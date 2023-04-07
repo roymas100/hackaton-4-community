@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import { Flex } from '@chakra-ui/react'
+import SideBar from '@/components/sideBar'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,7 +18,7 @@ export default function Home() {
       </Head>
       
       <Flex>
-        <h1>Ola amir</h1>
+        <SideBar/>
       </Flex>
     </>
   )
