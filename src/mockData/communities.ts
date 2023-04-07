@@ -23,15 +23,15 @@ export const communities = [
     {
         title : "Comunidade",
         description : "Uma comunidade da Universidade Federal da Bahia para incentivar o empreendedorismo e o espírito de liderança.",
-        imgUrl : "",
+        imgUrl : "https://www.globaltechrecruitment.com/wp-content/uploads/2019/03/it-1-1.jpg",
         color : "#99C5FD",
-        type : "private"
+        type : "public"
     },
     {
         title : "Comunidade",
         description : "Uma comunidade da Universidade Federal da Bahia para incentivar o empreendedorismo e o espírito de liderança.",
         imgUrl : "",
-        color : "#99C5FD",
+        color : "#873e23",
         type : "private"
     }
 ]

@@ -9,6 +9,12 @@ export interface ICommunityCard  {
   color : string
 }
 
+
+export interface IComunityData {
+  name : string
+  avatarUrl : string
+}
+
 type DbContextType = {
   communitiesList : ICommunityCard[]
 
@@ -27,6 +33,7 @@ export const DbContext = createContext({} as DbContextType);
 export function DbContextProvider(props: DbContextProviderProps) {
 
     const [ communitiesList, setCommunitiesList] = useState<ICommunityCard[]>(communities)
+    const [communitiesList2 , setCommunitiesList2] = useState<IComunityData[]>()
     return (
         <DbContext.Provider
           value={{

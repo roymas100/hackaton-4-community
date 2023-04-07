@@ -1,13 +1,14 @@
 import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "next/font/google";
-import styles from "@/styles/Home.module.css";
-import { Flex } from "@chakra-ui/react";
+import { Flex , Text } from "@chakra-ui/react";
 import SideBar from "@/components/sideBar";
 import HomeHeader from "@/components/HomeHeader";
 import CommunityCard from "@/components/CommunityCard";
 import { useDb } from "@/hooks/useDb";
 import { useEffect, useRef, useState } from "react";
+import TipsCard from "@/components/TipsCards/TipsCards";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -54,7 +55,7 @@ export default function Home() {
             justify={"flex-start"}
           >
 
-            <h1>Você pode experimentar... {sizeWidth}</h1>
+            <h1>Você pode experimentar...</h1>
           </Flex>
 
           <Flex
@@ -65,16 +66,87 @@ export default function Home() {
             w={"90%"}
             maxWidth="1920px"
             wrap="nowrap"
+            css={{
+              '&::-webkit-scrollbar': {
+          
+                height : "10px",
+                
+              },
+              '&::-webkit-scrollbar-track': {
+              
+                height : "10px",
+                
+              },
+              '&::-webkit-scrollbar-thumb': {
+                background: "gray",
+                borderRadius: '24px',
+              },
+            }}
+
             
           >
             {communitiesList.map((item , index) => {
               return (
-                <CommunityCard
+                <Link key={index} href="landing/1">
+                  <CommunityCard
+                    key={index}
+                    title={item.title}
+                    description={item.description}                
+                    imgUrl={item.imgUrl}
+                    type={item.type}
+                    color={item.color}
+                />
+                </Link>
+              
+              )
+            } )}
+            
+          </Flex>
+
+          <Flex
+            fontWeight="700"
+            fontSize="32px"
+            padding="32px 0"
+            width="90%"
+            maxW="1920px"
+            justify={"flex-start"}
+          >
+            <Text>Abra presentes para descobrir novos recursos 🎉</Text>
+          </Flex>
+          
+          <Flex
+            id="tips-grid"
+            gap={"32px"}
+            overflow="auto"
+            width={"100%"}
+            w={"90%"}
+            maxWidth="1920px"
+            wrap="nowrap"
+            css={{
+              '&::-webkit-scrollbar': {
+                width : "4px !important",
+                height : "10px",
+                
+              },
+              '&::-webkit-scrollbar-track': {
+                width : "4px !important",
+                height : "10px",
+                
+              },
+              '&::-webkit-scrollbar-thumb': {
+                background: "gray",
+                borderRadius: '24px',
+                width: "10px",
+                height: "10px"
+              },
+            }}
+            
+          >
+            {communitiesList.map((item , index) => {
+              return (
+                <TipsCard
                   key={index}
-                  title={item.title}
-                  description={item.description}                
-                  imgUrl={item.imgUrl}
-                  type={item.type}
+                  title="Explore os módulos da comunidade >"             
                   color={item.color}
                 />
               )
