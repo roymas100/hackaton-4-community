@@ -26,5 +26,8 @@
     "react-dom": "18.2.0",
     "react-feather": "^2.0.10",
     "typescript": "5.0.3"
+  },
+  "devDependencies": {
+    "@types/feather-icons": "^4.29.1"
   }
 }
