@@ -1,11 +1,13 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import styles from '@/styles/Home.module.css'
-import { Flex } from '@chakra-ui/react'
-import SideBar from '@/components/sideBar'
+import Head from "next/head";
+import Image from "next/image";
+import { Inter } from "next/font/google";
+import styles from "@/styles/Home.module.css";
+import { Flex } from "@chakra-ui/react";
+import SideBar from "@/components/sideBar";
+import HomeHeader from "@/components/HomeHeader";
+import CommunityCard from "@/components/CommunityCard";
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   return (
@@ -16,10 +18,29 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      
+
       <Flex>
-        <SideBar/>
+        <SideBar />
+
+        <Flex padding={12} flexDirection="column" w="100%">
+          <HomeHeader />
+          <Flex
+            fontWeight="700"
+            fontSize="32px"
+            padding="32px 0"
+          >
+
+            <h1>Você pode experimentar...</h1>
+          </Flex>
+
+          <Flex
+            id="community-grid"
+            
+          >
+            <CommunityCard/>
+          </Flex>
+        </Flex>
       </Flex>
     </>
-  )
+  );
 }
