@@ -65,7 +65,6 @@ const HomeHeader: React.FC = () => {
 
   useLayoutEffect(() => {
     if (categoriesRef.current?.[0]) {
-      console.log(categoriesRef);
       const rect = categoriesRef.current[0].getBoundingClientRect();
       setArrowPosition(
         rect.width / 2 +
@@ -107,7 +106,7 @@ const HomeHeader: React.FC = () => {
 
       <InputGroup maxW="400px">
         <InputLeftAddon>
-          <SearchIcon color="gray.300" />
+          <SearchIcon color="black" />
         </InputLeftAddon>
         <Input backgroundColor="white" placeholder="Busque por comunidades" />
       </InputGroup>
