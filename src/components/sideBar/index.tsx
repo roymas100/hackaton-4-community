@@ -8,11 +8,15 @@ export default function SideBar({ communityId }: { communityId?: boolean }) {
       alignItems="center"
       justifyContent="flex-start"
       flexDir="column"
+      width={"120px"}
       bgColor={"rgba(245, 245, 245, 1)"}
       padding="36px 16px"
       gap={"30px"}
       height="100vh"
       filter={`saturate(${communityId ? 0 : 1})`}
+      position="sticky"
+      left="0"
+      top="0"
     >
       <Flex
         id="logo-area"

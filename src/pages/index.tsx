@@ -6,10 +6,21 @@ import { Flex } from "@chakra-ui/react";
 import SideBar from "@/components/sideBar";
 import HomeHeader from "@/components/HomeHeader";
 import CommunityCard from "@/components/CommunityCard";
+import { useDb } from "@/hooks/useDb";
+import { useEffect, useRef, useState } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const {communitiesList} = useDb()
+  const [sizeWidth, setSizeWidth] = useState("")
+  useEffect(()=>{
+    if(window) {
+      const size = window.innerWidth;
+      setSizeWidth(size.toString() + "px")
+    } 
+  },[])
+  
   return (
     <>
       <Head>
@@ -19,27 +30,59 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Flex>
+      <Flex
+        w="100%"
+        flexDir={"row"}
+
+      >
         <SideBar />
 
-        <Flex padding={12} flexDirection="column" w="100%">
+        <Flex 
+          padding={12} 
+          flexDirection="column" 
+          w="calc(100% - 120px)"
+          alignItems="center"
+          
+        >
           <HomeHeader />
           <Flex
             fontWeight="700"
             fontSize="32px"
             padding="32px 0"
+            width="90%"
+            maxW="1920px"
+            justify={"flex-start"}
           >
 
-            <h1>Você pode experimentar...</h1>
+            <h1>Você pode experimentar... {sizeWidth}</h1>
           </Flex>
 
           <Flex
             id="community-grid"
+            gap={"32px"}
+            overflow="auto"
+            width={"100%"}
+            w={"90%"}
+            maxWidth="1920px"
+            wrap="nowrap"
             
           >
-            <CommunityCard/>
+            {communitiesList.map((item , index) => {
+              return (
+                <CommunityCard
+                  key={index}
+                  title={item.title}
+                  description={item.description}                
+                  imgUrl={item.imgUrl}
+                  type={item.type}
+                  color={item.color}
+                />
+              )
+            } )}
+            
           </Flex>
         </Flex>
+
       </Flex>
     </>
   );
