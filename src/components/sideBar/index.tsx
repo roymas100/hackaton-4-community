@@ -8,6 +8,7 @@ export default function SideBar({ communityId }: { communityId?: boolean }) {
       alignItems="center"
       justifyContent="flex-start"
       flexDir="column"
+      width={"120px"}
       bgColor={"rgba(245, 245, 245, 1)"}
       padding="36px 16px"
       gap={"30px"}

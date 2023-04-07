@@ -5,13 +5,14 @@ import React from 'react'
 type CommunityCardProps = {
   title : string
   description : string
-  imgUrl : string
+  imgUrl?: string
   type: string
+  color? : string
 }
 
 export default function CommunityCard(props:CommunityCardProps) {
 
-  const {title , description , imgUrl, type} = props
+  const {title , description , imgUrl, color, type} = props
   return (
     <Flex
       className={"card-community"}
@@ -21,6 +22,7 @@ export default function CommunityCard(props:CommunityCardProps) {
       boxShadow='xl'
       w="470px"
       h="317px"
+      minW="470px"
       borderRadius="8px"
       color= "#2D2D2D"
       
@@ -28,7 +30,8 @@ export default function CommunityCard(props:CommunityCardProps) {
       <Flex
         w="100%"
         height="156px"
-        backgroundImage={`url(${imgUrl})`}
+        background={imgUrl? `url(${imgUrl})` : ""}
+        bgColor={color}
         backgroundSize="cover"
         borderTopLeftRadius={"8px"}
         borderTopRightRadius={"8px"}
@@ -39,7 +42,7 @@ export default function CommunityCard(props:CommunityCardProps) {
         <Flex
         position="absolute"
         bottom="10px"
-        right="60px"
+        right="24px"
         bgColor="#fff"
         padding="4px 8px"
         borderRadius="8px"
@@ -105,6 +108,7 @@ export default function CommunityCard(props:CommunityCardProps) {
         padding="24px"
         gap={"8px"}
         color= "#2D2D2D"
+        minH="160px"
       >
         <Text
           fontSize="20px"
