@@ -13,6 +13,9 @@ export default function SideBar({ communityId }: { communityId?: boolean }) {
       gap={"30px"}
       height="100vh"
       filter={`saturate(${communityId ? 0 : 1})`}
+      position="sticky"
+      left="0"
+      top="0"
     >
       <Flex
         id="logo-area"
