@@ -1117,6 +1117,14 @@
   resolved "https://registry.yarnpkg.com/@rushstack/eslint-patch/-/eslint-patch-1.2.0.tgz#8be36a1f66f3265389e90b5f9c9962146758f728"
   integrity sha512-sXo/qW2/pAcmT43VoRKOJbDOfV3cYpq3szSVfIThQXNt+E4DfKj361vaAt3c88U5tPUxzEswam7GW48PJqtKAg==
 
+"@splinetool/react-spline@^2.2.6":
+  version "2.2.6"
+  resolved "https://registry.yarnpkg.com/@splinetool/react-spline/-/react-spline-2.2.6.tgz#c48f634f352311b9da210978f88bd195d605ee8a"
+  integrity sha512-y9L2VEbnC6FNZZu8XMmWM9YTTTWal6kJVfP05Amf0QqDNzCSumKsJxZyGUODvuCmiAvy0PfIfEsiVKnSxvhsDw==
+  dependencies:
+    lodash.debounce "^4.0.8"
+    react-merge-refs "^2.0.1"
+
 "@splinetool/runtime@^0.9.290":
   version "0.9.290"
   resolved "https://registry.yarnpkg.com/@splinetool/runtime/-/runtime-0.9.290.tgz#e61b4a90e67e6927144097ee4d9769e4c0df9e74"
@@ -2576,6 +2584,11 @@ locate-path@^6.0.0:
   dependencies:
     p-locate "^5.0.0"
 
+lodash.debounce@^4.0.8:
+  version "4.0.8"
+  resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
+  integrity sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==
+
 lodash.merge@^4.6.2:
   version "4.6.2"
   resolved "https://registry.yarnpkg.com/lodash.merge/-/lodash.merge-4.6.2.tgz#558aa53b43b661e1925a0afdfa36a9a1085fe57a"
@@ -2910,6 +2923,11 @@ react-is@^16.13.1, react-is@^16.7.0:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
+
+react-merge-refs@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/react-merge-refs/-/react-merge-refs-2.0.1.tgz#a1f8c2dadefa635333e9b91ec59f30b65228b006"
+  integrity sha512-pywF6oouJWuqL26xV3OruRSIqai31R9SdJX/I3gP2q8jLxUnA1IwXcLW8werUHLZOrp4N7YOeQNZrh/BKrHI4A==
 
 react-remove-scroll-bar@^2.3.3:
   version "2.3.4"
