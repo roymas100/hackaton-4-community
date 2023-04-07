@@ -15,11 +15,15 @@ import {
   Coffee,
   Book,
 } from "react-feather";
-import React, { useState } from "react";
+import React, { useLayoutEffect, useRef, useState } from "react";
 
-// import { Container } from './styles';
+interface Category {
+  Icon: Icon;
+  title: string;
+  color: string;
+}
 
-const categories: { Icon: Icon; title: string; color: string }[] = [
+const categories: Category[] = [
   {
     Icon: Smile,
     title: "Para você",
@@ -54,6 +58,35 @@ const categories: { Icon: Icon; title: string; color: string }[] = [
 
 const HomeHeader: React.FC = () => {
   const [currentCategory, setCurrentCategory] = useState(categories[0].title);
+  const [arrowPosition, setArrowPosition] = useState(0);
+
+  const categoriesRef = useRef<any>([]);
+  const headerRef = useRef<any>(undefined);
+
+  useLayoutEffect(() => {
+    if (categoriesRef.current?.[0]) {
+      const rect = categoriesRef.current[0].getBoundingClientRect();
+      setArrowPosition(
+        rect.width / 2 +
+          rect.left -
+          headerRef.current.getBoundingClientRect().left -
+          12
+      );
+    }
+  }, [headerRef, categoriesRef]);
+
+  const changeCurrentCategory = (category: Category, e: any) => {
+    if (headerRef.current) {
+      const rect = e.target.getBoundingClientRect();
+      setArrowPosition(
+        rect.width / 2 +
+          rect.left -
+          headerRef.current.getBoundingClientRect().left -
+          12
+      );
+    }
+    setCurrentCategory(category.title);
+  };
 
   return (
     <Flex
@@ -66,6 +99,8 @@ const HomeHeader: React.FC = () => {
       alignItems="center"
       justifyContent={"center"}
       gap={8}
+      position="relative"
+      ref={headerRef}
     >
       <Text color="white" fontSize={36} fontWeight={700}>
         Descubra comunidades mágicas
@@ -73,13 +108,13 @@ const HomeHeader: React.FC = () => {
 
       <InputGroup maxW="400px">
         <InputLeftAddon>
-          <SearchIcon color="gray.300" />
+          <SearchIcon color="black" />
         </InputLeftAddon>
         <Input backgroundColor="white" placeholder="Busque por comunidades" />
       </InputGroup>
 
-      <Flex gap="24px">
-        {categories.map((category) => (
+      <Flex gap="24px" overflowX={"auto"} width="100%" justifyContent="center">
+        {categories.map((category, i) => (
           <Flex
             key={category.title}
             flexDirection="column"
@@ -87,7 +122,8 @@ const HomeHeader: React.FC = () => {
             justifyContent="center"
             gap="8px"
             cursor="pointer"
-            onClick={() => setCurrentCategory(category.title)}
+            onClick={(e) => changeCurrentCategory(category, e)}
+            ref={(el) => (categoriesRef.current[i] = el)}
           >
             <Flex
               borderRadius={100}
@@ -105,7 +141,7 @@ const HomeHeader: React.FC = () => {
                 }
               />
             </Flex>
-            <Text color="white" fontWeight="bold">
+            <Text color="white" fontWeight="bold" textAlign="center">
               {category.title}
             </Text>
           </Flex>
@@ -115,10 +151,13 @@ const HomeHeader: React.FC = () => {
       <Flex
         width={0}
         height={0}
-        border-left="5px solid transparent"
-        border-right="5px solid transparent"
-        border-bottom="5px solid black"
+        borderLeft="12px solid transparent"
+        borderRight="12px solid transparent"
+        borderBottom="20px solid WHITE"
         position="absolute"
+        bottom={0}
+        transition="left 1s"
+        left={`${arrowPosition}px`}
       />
     </Flex>
   );
