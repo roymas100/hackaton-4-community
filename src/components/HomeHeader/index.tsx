@@ -5,12 +5,56 @@ import {
   InputLeftAddon,
   Text,
 } from "@chakra-ui/react";
-import { PhoneIcon, SearchIcon } from "@chakra-ui/icons";
-import React from "react";
+import { SearchIcon } from "@chakra-ui/icons";
+import {
+  Smile,
+  Icon,
+  Camera,
+  Feather,
+  Codepen,
+  Coffee,
+  Book,
+} from "react-feather";
+import React, { useState } from "react";
 
 // import { Container } from './styles';
 
+const categories: { Icon: Icon; title: string; color: string }[] = [
+  {
+    Icon: Smile,
+    title: "Para você",
+    color: "#00C292",
+  },
+  {
+    Icon: Camera,
+    title: "Fotografia",
+    color: "#7F0B7E",
+  },
+  {
+    Icon: Feather,
+    title: "Botânica",
+    color: "#43A632",
+  },
+  {
+    Icon: Codepen,
+    title: "Cursos",
+    color: "#C24CA1",
+  },
+  {
+    Icon: Coffee,
+    title: "Trabalhos",
+    color: "#C18F44",
+  },
+  {
+    Icon: Book,
+    title: "Estudos",
+    color: "#5258D9",
+  },
+];
+
 const HomeHeader: React.FC = () => {
+  const [currentCategory, setCurrentCategory] = useState(categories[0].title);
+
   return (
     <Flex
       borderRadius={16}
@@ -21,7 +65,7 @@ const HomeHeader: React.FC = () => {
       alignItems="center"
       gap={8}
     >
-      <Text color="white" fontSize={24}>
+      <Text color="white" fontSize={36} fontWeight={700}>
         Descubra comunidades mágicas
       </Text>
 
@@ -33,86 +77,47 @@ const HomeHeader: React.FC = () => {
       </InputGroup>
 
       <Flex gap="24px">
-        <Flex
-          flexDirection="column"
-          alignItems="center"
-          justifyContent="center"
-        >
+        {categories.map((category) => (
           <Flex
-            borderRadius={100}
-            w="60px"
-            h={"60px"}
-            backgroundColor="white"
+            key={category.title}
+            flexDirection="column"
             alignItems="center"
             justifyContent="center"
+            gap="8px"
+            cursor="pointer"
+            onClick={() => setCurrentCategory(category.title)}
           >
-            <PhoneIcon />
+            <Flex
+              borderRadius={100}
+              w="60px"
+              h={"60px"}
+              backgroundColor={
+                currentCategory === category.title ? category.color : "white"
+              }
+              alignItems="center"
+              justifyContent="center"
+            >
+              <category.Icon
+                color={
+                  currentCategory === category.title ? "white" : category.color
+                }
+              />
+            </Flex>
+            <Text color="white" fontWeight="bold">
+              {category.title}
+            </Text>
           </Flex>
-          <Text color="white" fontWeight="bold">
-            Para você
-          </Text>
-        </Flex>
-
-        <Flex
-          flexDirection="column"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <Flex
-            borderRadius={100}
-            w="60px"
-            h={"60px"}
-            backgroundColor="white"
-            alignItems="center"
-            justifyContent="center"
-          >
-            <PhoneIcon />
-          </Flex>
-          <Text color="white" fontWeight="bold">
-            Para você
-          </Text>
-        </Flex>
-
-        <Flex
-          flexDirection="column"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <Flex
-            borderRadius={100}
-            w="60px"
-            h={"60px"}
-            backgroundColor="white"
-            alignItems="center"
-            justifyContent="center"
-          >
-            <PhoneIcon />
-          </Flex>
-          <Text color="white" fontWeight="bold">
-            Para você
-          </Text>
-        </Flex>
-
-        <Flex
-          flexDirection="column"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <Flex
-            borderRadius={100}
-            w="60px"
-            h={"60px"}
-            backgroundColor="white"
-            alignItems="center"
-            justifyContent="center"
-          >
-            <PhoneIcon />
-          </Flex>
-          <Text color="white" fontWeight="bold">
-            Para você
-          </Text>
-        </Flex>
+        ))}
       </Flex>
+
+      <Flex
+        width={0}
+        height={0}
+        border-left="5px solid transparent"
+        border-right="5px solid transparent"
+        border-bottom="5px solid black"
+        position="absolute"
+      />
     </Flex>
   );
 };

@@ -18,10 +18,15 @@
     "@types/react-dom": "18.0.11",
     "eslint": "8.37.0",
     "eslint-config-next": "13.3.0",
+    "feather-icons": "^4.29.0",
     "framer-motion": "^10.11.2",
     "next": "13.3.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-feather": "^2.0.10",
     "typescript": "5.0.3"
+  },
+  "devDependencies": {
+    "@types/feather-icons": "^4.29.1"
   }
 }
