@@ -5,7 +5,7 @@ import {
   InputLeftAddon,
   Text,
 } from "@chakra-ui/react";
-import { PhoneIcon } from "@chakra-ui/icons";
+import { PhoneIcon, SearchIcon } from "@chakra-ui/icons";
 import React from "react";
 
 // import { Container } from './styles';
@@ -27,7 +27,7 @@ const HomeHeader: React.FC = () => {
 
       <InputGroup maxW="400px">
         <InputLeftAddon>
-          <PhoneIcon color="gray.300" />
+          <SearchIcon color="gray.300" />
         </InputLeftAddon>
         <Input backgroundColor="white" placeholder="Busque por comunidades" />
       </InputGroup>

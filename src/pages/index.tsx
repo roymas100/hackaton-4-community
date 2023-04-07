@@ -5,6 +5,7 @@ import styles from "@/styles/Home.module.css";
 import { Flex } from "@chakra-ui/react";
 import SideBar from "@/components/sideBar";
 import HomeHeader from "@/components/HomeHeader";
+import CommunityCard from "@/components/CommunityCard";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,6 +24,21 @@ export default function Home() {
 
         <Flex padding={12} flexDirection="column" w="100%">
           <HomeHeader />
+          <Flex
+            fontWeight="700"
+            fontSize="32px"
+            padding="32px 0"
+          >
+
+            <h1>Você pode experimentar...</h1>
+          </Flex>
+
+          <Flex
+            id="community-grid"
+            
+          >
+            <CommunityCard/>
+          </Flex>
         </Flex>
       </Flex>
     </>
