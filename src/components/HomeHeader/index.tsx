@@ -94,8 +94,10 @@ const HomeHeader: React.FC = () => {
       background="linear-gradient(102.63deg, #DE0FDC 4.55%, #4059E7 63.03%, #00C292 111.82%)"
       padding={42}
       flexDirection="column"
-      w={"100%"}
+      w={"90%"}
+      maxWidth="1920px"
       alignItems="center"
+      justifyContent={"center"}
       gap={8}
       position="relative"
       ref={headerRef}
