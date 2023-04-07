@@ -37,7 +37,12 @@ export default function Home() {
             id="community-grid"
             
           >
-            <CommunityCard/>
+            <CommunityCard
+              title={"Briofiteiros de plantão 🌱"}
+              description="A maior comunidade de botânicos do 4.communitys. Aqui você encontrará tudo relacionado a plantinhas e a plantões!!!"
+              imgUrl={"https://joaobidu.com.br/wp-content/uploads/2023/04/plantas-que-promovem-bem-estar-em-casa.jpg"}
+              type="private"
+            />
           </Flex>
         </Flex>
       </Flex>
