@@ -95,7 +95,10 @@ export default function SideBar({ communityId }: { communityId?: boolean }) {
         >
           {serverList.map((item, index) => {
             return (
-              <Flex
+              <Link
+              key={index}
+              href={`/landing/${item.id}`}>
+                   <Flex
                 key={index}
                 id="logo-area"
                 alignItems="center"
@@ -118,6 +121,10 @@ export default function SideBar({ communityId }: { communityId?: boolean }) {
                   src={item.imgUrl}
                 />
               </Flex>
+              
+              </Link>
+
+           
             );
           })}
         </Flex>
