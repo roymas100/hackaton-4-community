@@ -146,6 +146,12 @@ const CommunityPage: React.FC = () => {
               description="Gaste moedas com produtos"
             />
 
+            <Flex flexWrap="wrap" gap="24px" justifyContent="center">
+              {products.map((product) => (
+                <Product key={product.id} {...product} />
+              ))}
+            </Flex>
+
             <Divider
               title="Marketplace"
               description="Gaste moedas com mentorias profissionais de membros"
@@ -153,57 +159,124 @@ const CommunityPage: React.FC = () => {
             />
 
             <Flex flexWrap="wrap" gap="24px" justifyContent="center">
-              {Array.from(Array(6).keys()).map((item) => (
-                <Flex
-                  flexWrap="wrap"
-                  gap="24px"
-                  key={item}
-                  position="relative"
-                  width="342px"
-                  height="368px"
-                  borderRadius="12px"
-                  background="url('/gameficacao.svg')"
-                  backgroundPosition="center"
-                >
-                  <Flex
-                    backdropFilter="blur(14px)"
-                    backgroundColor="rgba(255,255,255, 0.01)"
-                    position="absolute"
-                    bottom={0}
-                    width="100%"
-                    justifyContent="space-between"
-                    padding="16px"
-                    border="1px solid #FFFFFF05"
-                    borderBottomRadius="12px"
-                  >
-                    <Flex gap="16px">
-                      <Avatar></Avatar>
-                      <Flex flexDirection="column">
-                        <Text color="#FFA7FF" fontWeight={400} fontSize="12px">
-                          Prestado por
-                        </Text>
-                        <Text color="#fff" fontWeight={700} fontSize="18px">
-                          Felipe
-                        </Text>
-                      </Flex>
-                    </Flex>
-
-                    <Flex flexDirection="column">
-                      <Text color="#FFA7FF" fontWeight={400} fontSize="12px">
-                        R$200,00
-                      </Text>
-                      <Text color="#fff" fontWeight={700} fontSize="18px">
-                        25 Figcoins
-                      </Text>
-                    </Flex>
-                  </Flex>
-                </Flex>
+              {cursos.map((product) => (
+                <Product key={product.id} {...product} />
               ))}
             </Flex>
           </Flex>
         </Flex>
       </Flex>
     </>
+  );
+};
+
+interface Product {
+  prestador: string;
+  coins: number;
+  price: string;
+  avatar?: string;
+  background?: string;
+  canvas?: string;
+  id: string;
+}
+
+const products: Product[] = [
+  {
+    prestador: "Felipe",
+    coins: 25,
+    price: "200,00",
+    id: "1",
+    canvas: "https://prod.spline.design/VIWFqzpSSvDvM8QR/scene.splinecode",
+  },
+  {
+    prestador: "Marcela",
+    coins: 25,
+    price: "200,00",
+    id: "2",
+    canvas: "https://prod.spline.design/A0BNLM6A5FMmE6UA/scene.splinecode",
+  },
+  {
+    prestador: "Marcela",
+    coins: 25,
+    price: "200,00",
+    id: "3",
+    canvas: "https://prod.spline.design/VIWFqzpSSvDvM8QR/scene.splinecode",
+  },
+];
+
+const cursos: Product[] = [
+  {
+    prestador: "Marcel",
+    coins: 25,
+    price: "200,00",
+    id: "1",
+    background: "/gameficacao.svg",
+  },
+  {
+    prestador: "Marcela",
+    coins: 25,
+    price: "200,00",
+    id: "2",
+    background: "/gameficacao1.svg",
+  },
+];
+
+const Product = ({
+  id,
+  coins,
+  prestador,
+  price,
+  avatar,
+  background = "/bggray.svg",
+  canvas,
+}: Product) => {
+  return (
+    <Flex
+      flexWrap="wrap"
+      gap="24px"
+      key={id}
+      position="relative"
+      width="342px"
+      height="368px"
+      borderRadius="12px"
+      background={`url('${background}')`}
+      backgroundPosition="center"
+    >
+      {canvas && <Spline scene={canvas} />}
+
+      <Flex
+        backdropFilter="blur(14px)"
+        backgroundColor="rgba(255,255,255, 0.01)"
+        position="absolute"
+        bottom={0}
+        width="100%"
+        justifyContent="space-between"
+        padding="16px"
+        border="1px solid #FFFFFF05"
+        borderBottomRadius="12px"
+      >
+        <Flex gap="16px">
+          <Avatar src={avatar}></Avatar>
+          <Flex flexDirection="column">
+            <Text color="#FFA7FF" fontWeight={400} fontSize="12px">
+              Prestado por
+            </Text>
+            <Text color="#fff" fontWeight={700} fontSize="18px">
+              {prestador}
+            </Text>
+          </Flex>
+        </Flex>
+
+        <Flex flexDirection="column">
+          <Text color="#FFA7FF" fontWeight={400} fontSize="12px">
+            R${price}
+          </Text>
+          <Text color="#fff" fontWeight={700} fontSize="18px">
+            {coins} Figcoins
+          </Text>
+        </Flex>
+      </Flex>
+    </Flex>
   );
 };
 
@@ -222,7 +295,6 @@ const Divider = ({
       padding="28px 36px"
       borderRadius="16px"
       background="#fff"
-      cursor="pointer"
       position="relative"
     >
       <Text color="#2D2D2D" fontWeight={700} fontSize="36px">
