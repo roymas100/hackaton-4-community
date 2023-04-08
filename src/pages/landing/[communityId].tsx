@@ -23,7 +23,7 @@ const LandingPage: React.FC = () => {
   const { serverList } = useDb();
 
   const community = useMemo(() => {
-    if (!currentCommunity) {
+    if (!currentCommunity || currentCommunity.id !== query.communityId) {
       return serverList.find((server) => server.id === query.communityId);
     }
     return currentCommunity;
@@ -97,6 +97,7 @@ const LandingPage: React.FC = () => {
             image={community?.imgUrl}
             category={community?.category}
             textColor={community?.textColor}
+            id={community?.id}
           />
 
           <Flex gap="24px" flexDir="column">
@@ -215,13 +216,16 @@ const Header = ({
   image,
   category,
   textColor = "#fff",
+  id,
 }: {
   title?: string;
   type?: string;
   image?: string;
   category?: string;
   textColor?: string;
+  id?: string;
 }) => {
+  const { push } = useRouter();
   return (
     <Flex mb="24px">
       <Flex justifyContent="space-between" alignItems="flex-end" width="100%">
@@ -285,6 +289,12 @@ const Header = ({
           boxShadow="0px 3.47992px 16.5296px rgba(0, 0, 0, 0.25);"
           leftIcon={type === "public" ? <UserPlus /> : <DollarSign />}
           size="lg"
+          cursor={type === "public" ? "normal" : "lock"}
+          onClick={() => {
+            if (id) {
+              push(`/community/${id}`);
+            }
+          }}
         >
           {type === "public"
             ? "Ingressar na Comunidade"

@@ -16,6 +16,13 @@ export const servers = [
     secondaryColor: "#FFE9CA",
     ternaryColor: "#FFE5F9",
     textColor: "#000",
+    // salas: [
+    //   {
+    //     title: "Início",
+    //     icon: "Home"
+    //   },
+
+    // ]
   },
   {
     name: "Canonlovers",
