@@ -1,4 +1,3 @@
-
 import { useCommunity, useDb } from "@/hooks/useDb";
 import { Avatar, Flex, useDisclosure } from "@chakra-ui/react";
 import Link from "next/link";
@@ -10,7 +9,7 @@ export default function SideBar({ communityId }: { communityId?: boolean }) {
   const { serverList } = useDb();
   const { setCurrentCommunity } = useCommunity();
   const { push, query } = useRouter();
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <Flex
       id="side-bar"
@@ -35,7 +34,6 @@ export default function SideBar({ communityId }: { communityId?: boolean }) {
         gap="30px"
       >
         <Link href="/">
-
           <svg
             width="58"
             height="58"
@@ -66,7 +64,6 @@ export default function SideBar({ communityId }: { communityId?: boolean }) {
               stroke-linejoin="round"
             />
           </svg>
-
         </Link>
 
         <Flex w={"64px"} h="5px" bgColor={"#2D2D2D"} borderRadius="18px" />
@@ -94,7 +91,7 @@ export default function SideBar({ communityId }: { communityId?: boolean }) {
                 }}
                 onClick={() => {
                   setCurrentCommunity(item);
-                  push(`/landing/${item.id}`);
+                  push(`/community/${item.id}`);
                 }}
               >
                 <Avatar
