@@ -15,10 +15,11 @@ type CommunityCardProps = {
   imgUrl?: string;
   type: string;
   color?: string;
+  icon?: string;
 };
 
 export default function CommunityCard(props: CommunityCardProps) {
-  const { title, description, imgUrl, color, type } = props;
+  const { title, description, imgUrl, color, type, icon } = props;
   return (
     <Flex
       className={"card-community"}
@@ -42,6 +43,16 @@ export default function CommunityCard(props: CommunityCardProps) {
         borderTopRightRadius={"8px"}
         position="relative"
       >
+        {icon && (
+          <Image
+            alt="Icon"
+            src={icon}
+            position="absolute"
+            top="16px"
+            left="16px"
+            width="40px"
+          />
+        )}
         <Tag position="absolute" bottom="10px" right="24px">
           {type === "public" ? (
             <>

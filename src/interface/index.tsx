@@ -1,9 +1,12 @@
 export interface ICommunityCard {
   title: string;
   description: string;
-  imgUrl: string;
+  imgUrl?: string;
   type: string;
   color: string;
+  disabled: boolean;
+  id?: string;
+  icon?: string;
 }
 
 export interface IComunityData {
@@ -23,13 +26,17 @@ export interface IServerSubscribe {
   image1: string;
   image2: string;
   image3: string;
+  primaryColor: string;
+  secondaryColor: string;
+  ternaryColor: string;
+  textColor: string;
 }
 
 export interface IModalNews {
-  title : string
-  color : string
-  news : {
-    subtitle : string,
-    text: string
-  }[]
+  title: string;
+  color: string;
+  news: {
+    subtitle: string;
+    text: string;
+  }[];
 }
