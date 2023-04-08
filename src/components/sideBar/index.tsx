@@ -1,13 +1,16 @@
+import { useDb } from "@/hooks/useDb";
 import { Avatar, Flex } from "@chakra-ui/react";
 import Link from "next/link";
 import React from "react";
+import { Bell, Inbox } from "react-feather";
 
 export default function SideBar({ communityId }: { communityId?: boolean }) {
+  const { serverList } = useDb()
   return (
     <Flex
       id="side-bar"
       alignItems="center"
-      justifyContent="flex-start"
+      justifyContent="space-between"
       flexDir="column"
       width={"120px"}
       bgColor={"rgba(245, 245, 245, 1)"}
@@ -25,6 +28,7 @@ export default function SideBar({ communityId }: { communityId?: boolean }) {
         justifyContent="center"
         flexDir="column"
         gap="30px"
+        
       >
         <Link href="/">
           
@@ -44,63 +48,81 @@ export default function SideBar({ communityId }: { communityId?: boolean }) {
           bgColor={"#2D2D2D"} 
           borderRadius="18px"
         />
+
+<Flex
+        id="server-area"
+        flexDir="column"
+        justifyContent={"flex-start"}
+        justifySelf={"flex-start"}
+        alignSelf={"center"}
+        gap="16px"
+      >
+        {serverList.map( (item,index)=>{
+          return (
+            <Flex
+            key={index}
+            id="logo-area"
+            alignItems="center"
+            justifyContent="center"
+            flexDir="column"
+            cursor="pointer"
+            filter="saturate(0)"
+            _hover={{
+              filter: "saturate(1)",
+            }}
+          >
+            <Avatar
+              width={"64px"}
+              height="64px"
+              name={item.name[0]}
+              src={item.imgUrl}
+            />
+          </Flex>
+          )
+        })}
+ 
       </Flex>
+      </Flex>
+     
+     
 
       <Flex
-        id="logo-area"
-        alignItems="center"
-        justifyContent="center"
+        id="user-area"
         flexDir="column"
-        cursor="pointer"
-        filter="saturate(0)"
-        _hover={{
-          filter: "saturate(1)",
-        }}
-      >
-        <Avatar
-          width={"64px"}
-          height="64px"
-          name="Dan Abrahmov"
-          src="https://bit.ly/dan-abramov"
-        />
-      </Flex>
-
-      <Flex
-        id="logo-area"
-        alignItems="center"
+        alignItems={"center"}
         justifyContent="center"
-        flexDir="column"
-        cursor="pointer"
-        filter="saturate(0)"
-        _hover={{
-          filter: "saturate(1)",
-        }}
-      >
-        <Avatar
-          width={"64px"}
-          height="64px"
-          name="Dan Abrahmov"
-          src="https://bit.ly/dan-abramov"
+        justifySelf={"flex-end"}
+        alignSelf={"center"}
+        gap="24px"
+      > 
+        <Bell
+          width="32px"
+          height="32px"
         />
-      </Flex>
-
-      <Flex
-        id="logo-area"
-        alignItems="center"
-        justifyContent="center"
-        flexDir="column"
-        cursor="pointer"
-        filter="saturate(0)"
-        _hover={{
-          filter: "saturate(1)",
-        }}
-      >
-        <Avatar
-          width={"64px"}
-          height="64px"
-          name="Dan Abrahmov"
-          src="https://bit.ly/dan-abramov"
+        <Inbox
+          width="32px"
+          height="32px"
         />
+        <Flex
+          position="relative"
+        >
+          <Avatar
+            width="64px"
+            height="64px"
+            name="Ryan Gosling"
+            src="https://media.fstatic.com/lhwC16sJLL8yuSeFFX9GCMKhi-k=/full-fit-in/290x478/filters:format(webp)/media/artists/avatar/2016/12/ryan-gosling_a106376_pXORbNR.jpg"
+          />
+          <Flex
+            width="18px"
+            height="18px"
+            borderRadius="100%"
+            bgColor="#38A169"
+            position="absolute"
+            bottom="0"
+            right="0"
+          />
+          
+        </Flex>
       </Flex>
     </Flex>
   );
