@@ -141,20 +141,16 @@ const CommunityPage: React.FC = () => {
               </Flex>
             </Flex>
 
-            <Flex
-              flexDir="column"
-              padding="28px 36px"
-              borderRadius="16px"
-              background="#fff"
-              cursor="pointer"
-            >
-              <Text color="#2D2D2D" fontWeight={700} fontSize="36px">
-                Marketplace
-              </Text>
-              <Text color="#2D2D2D" fontWeight={500} fontSize="18px">
-                Gaste moedas com mentorias profissionais de membros
-              </Text>
-            </Flex>
+            <Divider
+              title="Marketplace"
+              description="Gaste moedas com produtos"
+            />
+
+            <Divider
+              title="Marketplace"
+              description="Gaste moedas com mentorias profissionais de membros"
+              color="linear-gradient(135.35deg, #00C292 1.15%, #263238 99.46%)"
+            />
 
             <Flex flexWrap="wrap" gap="24px" justifyContent="center">
               {Array.from(Array(6).keys()).map((item) => (
@@ -170,7 +166,6 @@ const CommunityPage: React.FC = () => {
                   backgroundPosition="center"
                 >
                   <Flex
-                    // backdropBlur="14px"
                     backdropFilter="blur(14px)"
                     backgroundColor="rgba(255,255,255, 0.01)"
                     position="absolute"
@@ -209,6 +204,43 @@ const CommunityPage: React.FC = () => {
         </Flex>
       </Flex>
     </>
+  );
+};
+
+const Divider = ({
+  title,
+  description,
+  color = "linear-gradient(135.35deg, #9A4DFF 1.15%, #F600DD 99.46%)",
+}: {
+  title: string;
+  description: string;
+  color?: string;
+}) => {
+  return (
+    <Flex
+      flexDir="column"
+      padding="28px 36px"
+      borderRadius="16px"
+      background="#fff"
+      cursor="pointer"
+      position="relative"
+    >
+      <Text color="#2D2D2D" fontWeight={700} fontSize="36px">
+        {title}
+      </Text>
+      <Text color="#2D2D2D" fontWeight={500} fontSize="18px">
+        {description}
+      </Text>
+      <Flex
+        position="absolute"
+        right={0}
+        height="100%"
+        width="175px"
+        background={color}
+        top={0}
+        borderRightRadius="16px"
+      />
+    </Flex>
   );
 };
 
