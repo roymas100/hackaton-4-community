@@ -44,6 +44,9 @@ export default function Home() {
           flexDirection="column"
           w="calc(100% - 120px)"
           alignItems="center"
+          css = {{
+            filter: `${isOpen?  "blur(40px)" : "blur(0);"}`
+          }}
         >
           <HomeHeader />
           <Flex
