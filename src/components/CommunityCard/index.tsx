@@ -45,11 +45,10 @@ export default function CommunityCard(props: CommunityCardProps) {
         <Tag position="absolute" bottom="10px" right="24px">
           {type === "public" ? (
             <>
-              {" "}
               <TagLeftIcon boxSize="16px" as={Users} />
               <TagLabel fontSize="14px" lineHeight="15px" fontWeight="600">
                 Pública
-              </TagLabel>{" "}
+              </TagLabel>
             </>
           ) : (
             <>
@@ -61,7 +60,7 @@ export default function CommunityCard(props: CommunityCardProps) {
                 color="#DAA520"
               >
                 Premium
-              </TagLabel>{" "}
+              </TagLabel>
             </>
           )}
         </Tag>
