@@ -164,21 +164,36 @@ export default function Home() {
               )
             } )}
 
-            <Modal isOpen={isOpen} onClose={onClose}>
-              <ModalOverlay />
-              <ModalContent>
-                <ModalHeader>Modal Title</ModalHeader>
-                <ModalCloseButton />
-                <ModalBody>
-                  ola
-                </ModalBody>
+            <Modal isOpen={isOpen} onClose={onClose} size="xl">
+              <ModalContent maxW="1280px">
+                  
+                  <Flex>
+                  <ModalCloseButton />
+                    <Flex
+                      w="50%"
+                      h="650px"
+                      flexDir="column"
+                      padding={"52px 84px"}
+                      >
+                        <Text>
+                          Novo sistema de gamificação do 4.community:
+                        </Text>
+                      </Flex>
+    
+                      <Flex
+                        background={`url(https://i.imgur.com/WqQNVlq.png)`}
+                        bgColor={"#fff"}
+                        backgroundSize="cover"
+                        w="50%"
+                        h="650px"
+                      >
+                        aqui
+                      </Flex>
+                  </Flex>
+                  
+                
 
-                <ModalFooter>
-                  <Button colorScheme='blue' mr={3} onClick={onClose}>
-                    Close
-                  </Button>
-                  <Button variant='ghost'>Secondary Action</Button>
-                </ModalFooter>
+
               </ModalContent>
             </Modal>
             
