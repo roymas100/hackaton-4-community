@@ -1,5 +1,5 @@
 
-import { useDb } from "@/hooks/useDb";
+import { useCommunity, useDb } from "@/hooks/useDb";
 import { Avatar, Flex, useDisclosure } from "@chakra-ui/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -10,7 +10,6 @@ export default function SideBar({ communityId }: { communityId?: boolean }) {
   const { serverList } = useDb();
   const { setCurrentCommunity } = useCommunity();
   const { push, query } = useRouter();
-  const { serverList } = useDb()
   const { isOpen, onOpen, onClose } = useDisclosure()
   return (
     <Flex

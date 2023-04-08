@@ -24,3 +24,12 @@ export interface IServerSubscribe {
   image2: string;
   image3: string;
 }
+
+export interface IModalNews {
+  title : string
+  color : string
+  news : {
+    subtitle : string,
+    text: string
+  }[]
+}
