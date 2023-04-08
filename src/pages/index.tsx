@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "next/font/google";
-import { Flex , Text } from "@chakra-ui/react";
+import { Button, Flex , Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, useDisclosure } from "@chakra-ui/react";
 import SideBar from "@/components/sideBar";
 import HomeHeader from "@/components/HomeHeader";
 import CommunityCard from "@/components/CommunityCard";
@@ -12,9 +12,11 @@ import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
+
 export default function Home() {
   const {communitiesList} = useDb()
   const [sizeWidth, setSizeWidth] = useState("")
+  const { isOpen, onOpen, onClose } = useDisclosure()
   useEffect(()=>{
     if(window) {
       const size = window.innerWidth;
@@ -144,13 +146,56 @@ export default function Home() {
           >
             {communitiesList.map((item , index) => {
               return (
-                <TipsCard
-                  key={index}
-                  title="Explore os módulos da comunidade >"             
-                  color={item.color}
-                />
+                <>
+                  <Flex onClick={onOpen}> 
+                    <TipsCard
+                        key={index}
+                        title="Explore os módulos da comunidade >"             
+                        color={item.color}
+                        
+                      />
+                  
+                  </Flex>
+
+                  
+                    
+                </>
+                
               )
             } )}
+
+            <Modal isOpen={isOpen} onClose={onClose} size="xl">
+              <ModalContent maxW="1280px">
+                  
+                  <Flex>
+                  <ModalCloseButton />
+                    <Flex
+                      w="50%"
+                      h="650px"
+                      flexDir="column"
+                      padding={"52px 84px"}
+                      >
+                        <Text>
+                          Novo sistema de gamificação do 4.community:
+                        </Text>
+                      </Flex>
+    
+                      <Flex
+                        background={`url(https://i.imgur.com/WqQNVlq.png)`}
+                        bgColor={"#fff"}
+                        backgroundSize="cover"
+                        w="50%"
+                        h="650px"
+                      >
+                        aqui
+                      </Flex>
+                  </Flex>
+                  
+                
+
+
+              </ModalContent>
+            </Modal>
             
           </Flex>
         </Flex>
