@@ -15,7 +15,7 @@ import {
   Coffee,
   Book,
 } from "react-feather";
-import React, { useLayoutEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 interface Category {
   Icon: Icon;
@@ -63,7 +63,7 @@ const HomeHeader: React.FC = () => {
   const categoriesRef = useRef<any>([]);
   const headerRef = useRef<any>(undefined);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (categoriesRef.current?.[0]) {
       const rect = categoriesRef.current[0].getBoundingClientRect();
       setArrowPosition(
