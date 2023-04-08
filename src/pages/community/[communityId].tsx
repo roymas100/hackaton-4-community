@@ -8,8 +8,48 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useMemo } from "react";
 import { ChevronDown, Dribbble, Home, Smile } from "react-feather";
-
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
 // import { Container } from './styles';
+
+const data = [
+  {
+    name: "Janeiro",
+    experiencia: 10,
+  },
+  {
+    name: "Fevereiro",
+    experiencia: 11,
+  },
+  {
+    name: "Março",
+    experiencia: 30,
+  },
+  {
+    name: "Abril",
+    experiencia: 35,
+  },
+  {
+    name: "Maio",
+    experiencia: 35,
+  },
+  {
+    name: "Junho",
+    experiencia: 40,
+  },
+  {
+    name: "Julho",
+    experiencia: 47,
+  },
+];
 
 const CommunityPage: React.FC = () => {
   const { currentCommunity } = useCommunity();
@@ -99,11 +139,32 @@ const CommunityPage: React.FC = () => {
                   alignItems="center"
                   justifyContent="center"
                 >
-                  {Array.from(Array(20).keys()).map((item) => (
-                    <Image alt="bronze" src="/bronze.svg" key={item} />
-                  ))}
+                  <LineChart
+                    width={500}
+                    height={300}
+                    data={data}
+                    margin={{
+                      top: 5,
+                      right: 30,
+                      left: 20,
+                      bottom: 5,
+                    }}
+                  >
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="name" />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Line
+                      type="monotone"
+                      dataKey="experiencia"
+                      stroke="#9A4DFF"
+                      activeDot={{ r: 8 }}
+                    />
+                  </LineChart>
                 </Flex>
               </Flex>
+              {/* <Image src="/grafico.png" w="400px" /> */}
 
               <Flex
                 w="100%"
