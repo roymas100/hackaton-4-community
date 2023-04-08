@@ -1,7 +1,19 @@
 import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "next/font/google";
-import { Button, Flex , Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, useDisclosure } from "@chakra-ui/react";
+import {
+  Button,
+  Flex,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+  Text,
+  useDisclosure,
+} from "@chakra-ui/react";
 import SideBar from "@/components/sideBar";
 import HomeHeader from "@/components/HomeHeader";
 import CommunityCard from "@/components/CommunityCard";
@@ -12,18 +24,17 @@ import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
-
 export default function Home() {
-  const {communitiesList} = useDb()
-  const [sizeWidth, setSizeWidth] = useState("")
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  useEffect(()=>{
-    if(window) {
+  const { communitiesList } = useDb();
+  const [sizeWidth, setSizeWidth] = useState("");
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  useEffect(() => {
+    if (window) {
       const size = window.innerWidth;
-      setSizeWidth(size.toString() + "px")
-    } 
-  },[])
-  
+      setSizeWidth(size.toString() + "px");
+    }
+  }, []);
+
   return (
     <>
       <Head>
@@ -33,19 +44,14 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Flex
-        w="100%"
-        flexDir={"row"}
-
-      >
+      <Flex w="100%" flexDir={"row"}>
         <SideBar />
 
-        <Flex 
-          padding={12} 
-          flexDirection="column" 
+        <Flex
+          padding={12}
+          flexDirection="column"
           w="calc(100% - 120px)"
           alignItems="center"
-          
         >
           <HomeHeader />
           <Flex
@@ -56,7 +62,6 @@ export default function Home() {
             maxW="1920px"
             justify={"flex-start"}
           >
-
             <h1>Você pode experimentar...</h1>
           </Flex>
 
@@ -69,40 +74,36 @@ export default function Home() {
             maxWidth="1920px"
             wrap="nowrap"
             css={{
-              '&::-webkit-scrollbar': {
-          
-                height : "10px",
-                
+              "&::-webkit-scrollbar": {
+                height: "10px",
               },
-              '&::-webkit-scrollbar-track': {
-              
-                height : "10px",
-                
+              "&::-webkit-scrollbar-track": {
+                height: "10px",
               },
-              '&::-webkit-scrollbar-thumb': {
+              "&::-webkit-scrollbar-thumb": {
                 background: "gray",
-                borderRadius: '24px',
+                borderRadius: "24px",
               },
             }}
-
-            
           >
-            {communitiesList.map((item , index) => {
+            {communitiesList.map((item, index) => {
               return (
-                <Link key={index} href="landing/1">
+                <Link
+                  key={index}
+                  href={item.disabled ? "#" : `landing/${item.id}`}
+                >
                   <CommunityCard
                     key={index}
                     title={item.title}
-                    description={item.description}                
+                    description={item.description}
                     imgUrl={item.imgUrl}
                     type={item.type}
                     color={item.color}
-                />
+                    icon={item.icon}
+                  />
                 </Link>
-              
-              )
-            } )}
-            
+              );
+            })}
           </Flex>
 
           <Flex
@@ -115,7 +116,7 @@ export default function Home() {
           >
             <Text>Abra presentes para descobrir novos recursos 🎉</Text>
           </Flex>
-          
+
           <Flex
             id="tips-grid"
             gap={"32px"}
@@ -125,81 +126,63 @@ export default function Home() {
             maxWidth="1920px"
             wrap="nowrap"
             css={{
-              '&::-webkit-scrollbar': {
-                width : "4px !important",
-                height : "10px",
-                
+              "&::-webkit-scrollbar": {
+                width: "4px !important",
+                height: "10px",
               },
-              '&::-webkit-scrollbar-track': {
-                width : "4px !important",
-                height : "10px",
-                
+              "&::-webkit-scrollbar-track": {
+                width: "4px !important",
+                height: "10px",
               },
-              '&::-webkit-scrollbar-thumb': {
+              "&::-webkit-scrollbar-thumb": {
                 background: "gray",
-                borderRadius: '24px',
+                borderRadius: "24px",
                 width: "10px",
-                height: "10px"
+                height: "10px",
               },
             }}
-            
           >
-            {communitiesList.map((item , index) => {
+            {communitiesList.map((item, index) => {
               return (
                 <>
-                  <Flex onClick={onOpen}> 
+                  <Flex onClick={onOpen}>
                     <TipsCard
-                        key={index}
-                        title="Explore os módulos da comunidade >"             
-                        color={item.color}
-                        
-                      />
-                  
+                      key={index}
+                      title="Explore os módulos da comunidade >"
+                      color={item.color}
+                    />
                   </Flex>
-
-                  
-                    
                 </>
-                
-              )
-            } )}
+              );
+            })}
 
             <Modal isOpen={isOpen} onClose={onClose} size="xl">
               <ModalContent maxW="1280px">
-                  
-                  <Flex>
+                <Flex>
                   <ModalCloseButton />
-                    <Flex
-                      w="50%"
-                      h="650px"
-                      flexDir="column"
-                      padding={"52px 84px"}
-                      >
-                        <Text>
-                          Novo sistema de gamificação do 4.community:
-                        </Text>
-                      </Flex>
-    
-                      <Flex
-                        background={`url(https://i.imgur.com/WqQNVlq.png)`}
-                        bgColor={"#fff"}
-                        backgroundSize="cover"
-                        w="50%"
-                        h="650px"
-                      >
-                        aqui
-                      </Flex>
+                  <Flex
+                    w="50%"
+                    h="650px"
+                    flexDir="column"
+                    padding={"52px 84px"}
+                  >
+                    <Text>Novo sistema de gamificação do 4.community:</Text>
                   </Flex>
-                  
-                
 
-
+                  <Flex
+                    background={`url(https://i.imgur.com/WqQNVlq.png)`}
+                    bgColor={"#fff"}
+                    backgroundSize="cover"
+                    w="50%"
+                    h="650px"
+                  >
+                    aqui
+                  </Flex>
+                </Flex>
               </ModalContent>
             </Modal>
-            
           </Flex>
         </Flex>
-
       </Flex>
     </>
   );

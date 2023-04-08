@@ -12,6 +12,10 @@ export const servers = [
     image1: "network",
     image2: "depoimentos",
     image3: "gameficacao",
+    primaryColor: "#DAECFF",
+    secondaryColor: "#FFE9CA",
+    ternaryColor: "#FFE5F9",
+    textColor: "#000",
   },
   {
     name: "Canonlovers",
@@ -25,5 +29,9 @@ export const servers = [
     image1: "network1",
     image2: "depoimentos",
     image3: "gameficacao1",
+    primaryColor: "#141414",
+    secondaryColor: "#141414",
+    ternaryColor: "#141414",
+    textColor: "#fff",
   },
 ];

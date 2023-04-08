@@ -15,41 +15,7 @@ import { DollarSign, Star, UserPlus, Users } from "react-feather";
 import Spline from "@splinetool/react-spline";
 import { useCommunity, useDb } from "@/hooks/useDb";
 import { useRouter } from "next/router";
-
-const depositions = [
-  {
-    deposition:
-      "“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ornare viverra nunc, nec dictum massa placerat ut. Nam sed scelerisque risus. Vestibulum quis neque tellus. Vestibulum non auctor diam, in feugiat risus.”",
-    name: "Lucas Veloso",
-    role: "Product Designer",
-    image:
-      "https://aniyuki.com/wp-content/uploads/2022/05/aniyuki-anime-avatar-black-and-white-35.jpg",
-  },
-  {
-    deposition:
-      "“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ornare viverra nunc, nec dictum massa placerat ut. Nam sed scelerisque risus. Vestibulum quis neque tellus. Vestibulum non auctor diam, in feugiat risus.”",
-    name: "Lucas Ribeiro",
-    role: "Enfermeiro",
-    image:
-      "https://4maos.com.br/wp-content/uploads/2022/10/e4031b6fdcd96b53c78b2e3a12f6819c.jpg",
-  },
-  {
-    deposition:
-      "“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ornare viverra nunc, nec dictum massa placerat ut. Nam sed scelerisque risus. Vestibulum quis neque tellus. Vestibulum non auctor diam, in feugiat risus.”",
-    name: "Lurdes Sampaio",
-    role: "Aposentada",
-    image:
-      "https://thypix.com/wp-content/uploads/2021/10/anime-avatar-profile-picture-thypix-m.jpg",
-  },
-  {
-    deposition:
-      "“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ornare viverra nunc, nec dictum massa placerat ut. Nam sed scelerisque risus. Vestibulum quis neque tellus. Vestibulum non auctor diam, in feugiat risus.”",
-    name: "Letícia Ristghneer",
-    role: "Designer de moda",
-    image:
-      "https://4maos.com.br/wp-content/uploads/2022/10/ba548c605b10559a0e2f3c69931820e7.jpg",
-  },
-];
+import { depositions } from "@/mockData/depositions";
 
 const LandingPage: React.FC = () => {
   const { currentCommunity } = useCommunity();
@@ -107,7 +73,9 @@ const LandingPage: React.FC = () => {
         gap="24px"
       >
         <Flex
-          backgroundColor="black"
+          backgroundColor={
+            community?.primaryColor ? community?.primaryColor : `black`
+          }
           width="100%"
           height="300px"
           position="absolute"
@@ -128,6 +96,7 @@ const LandingPage: React.FC = () => {
             type={community?.type}
             image={community?.imgUrl}
             category={community?.category}
+            textColor={community?.textColor}
           />
 
           <Flex gap="24px" flexDir="column">
@@ -167,14 +136,16 @@ const LandingPage: React.FC = () => {
                 <Card
                   title="Networking e coworking"
                   description="Entre em contato com milhares de pessoas que também estão aprendendo."
-                  backgroundColor="#DAECFF"
+                  backgroundColor={community?.primaryColor}
                   image={community?.image1}
+                  textColor={community?.textColor}
                 />
                 <Card
                   title="Feedbacks e indicações"
                   description="Receba críticas positivas e indicações para vagas de emprego"
-                  backgroundColor="#FFE9CA"
+                  backgroundColor={community?.secondaryColor}
                   image={community?.image2}
+                  textColor={community?.textColor}
                 />
               </Flex>
 
@@ -182,8 +153,9 @@ const LandingPage: React.FC = () => {
                 title="Marketplace gamificada"
                 description="Conquiste pontos na plataforma e compre cursos, ingressos e muito mais!"
                 vertical
-                backgroundColor="#FFE5F9"
+                backgroundColor={community?.ternaryColor}
                 image={community?.image3}
+                textColor={community?.textColor}
               />
             </Flex>
           </Flex>
@@ -197,16 +169,18 @@ const LandingPage: React.FC = () => {
 
 const Card = ({
   vertical,
-  backgroundColor,
+  backgroundColor = "#000",
+  textColor = "#fff",
   title,
   description,
   image,
 }: {
   vertical?: boolean;
-  backgroundColor: string;
+  backgroundColor?: string;
   title: string;
   description: string;
   image?: string;
+  textColor?: string;
 }) => {
   return (
     <Flex
@@ -221,10 +195,10 @@ const Card = ({
         alignItems="center"
         justifyContent="center"
       >
-        <Text fontWeight={600} fontSize={"32px"}>
+        <Text fontWeight={600} fontSize={"32px"} color={textColor}>
           {title}
         </Text>
-        <Text fontWeight={300} fontSize={"20px"}>
+        <Text fontWeight={300} fontSize={"20px"} color={textColor}>
           {description}
         </Text>
       </Flex>
@@ -240,11 +214,13 @@ const Header = ({
   type = "public",
   image,
   category,
+  textColor = "#fff",
 }: {
   title?: string;
   type?: string;
   image?: string;
   category?: string;
+  textColor?: string;
 }) => {
   return (
     <Flex mb="24px">
@@ -266,11 +242,11 @@ const Header = ({
           </Flex>
           <Flex flexDir="column" justifyContent="space-between">
             <Flex flexDir="column" gap="8px" alignItems="flex-start">
-              <Text fontWeight={600} fontSize="32px" color="white">
+              <Text fontWeight={600} fontSize="32px" color={textColor}>
                 {title}
               </Text>
 
-              <Tag>
+              <Tag border="1px solid #000">
                 {type === "public" ? (
                   <>
                     <TagLeftIcon boxSize="16px" as={Users} />

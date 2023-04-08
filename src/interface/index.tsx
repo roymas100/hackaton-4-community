@@ -4,6 +4,9 @@ export interface ICommunityCard {
   imgUrl: string;
   type: string;
   color: string;
+  disabled: boolean;
+  id: string;
+  icon?: string;
 }
 
 export interface IComunityData {
@@ -23,4 +26,8 @@ export interface IServerSubscribe {
   image1: string;
   image2: string;
   image3: string;
+  primaryColor: string;
+  secondaryColor: string;
+  ternaryColor: string;
+  textColor: string;
 }
