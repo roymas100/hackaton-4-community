@@ -31,3 +31,12 @@ export interface IServerSubscribe {
   ternaryColor: string;
   textColor: string;
 }
+
+export interface IModalNews {
+  title : string
+  color : string
+  news : {
+    subtitle : string,
+    text: string
+  }[]
+}

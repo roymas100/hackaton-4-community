@@ -21,11 +21,12 @@ import { useDb } from "@/hooks/useDb";
 import { useEffect, useRef, useState } from "react";
 import TipsCard from "@/components/TipsCards/TipsCards";
 import Link from "next/link";
+import { User } from "react-feather";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  const { communitiesList } = useDb();
+  const { communitiesList, newsList } = useDb();
   const [sizeWidth, setSizeWidth] = useState("");
   const { isOpen, onOpen, onClose } = useDisclosure();
   useEffect(() => {
@@ -142,7 +143,7 @@ export default function Home() {
               },
             }}
           >
-            {communitiesList.map((item, index) => {
+            {newsList.map((item, index) => {
               return (
                 <>
                   <Flex onClick={onOpen}>
@@ -152,35 +153,58 @@ export default function Home() {
                       color={item.color}
                     />
                   </Flex>
+
+                  <Modal isOpen={isOpen} onClose={onClose} size="xl">
+                    <ModalContent maxW="1280px">
+                      <Flex>
+                        <ModalCloseButton />
+                        <Flex
+                          w="60%"
+                          h="760px"
+                          flexDir="column"
+                          padding={"52px 84px"}
+                          gap="60px"
+                        >
+                          <Text
+                            fontSize="40px"
+                            fontWeight="600"
+                            lineHeight="72px"
+                          >
+                            {item.title}
+                          </Text>
+                          {item.news.map((item2, index2) => (
+                            <Flex key={index2}>
+                              <Flex flexDir="column" gap="8px">
+                                <Flex
+                                  alignItems="center"
+                                  justifyContent="flex-start"
+                                  gap="24px"
+                                  fontSize="32px"
+                                  fontWeight="600"
+                                >
+                                  <User width="32px" height="32px" />
+                                  <Text>{item2.subtitle}</Text>
+                                </Flex>
+
+                                <Text fontSize="18px">{item2.text}</Text>
+                              </Flex>
+                            </Flex>
+                          ))}
+                        </Flex>
+
+                        <Flex
+                          background={`url(https://i.imgur.com/WqQNVlq.png)`}
+                          bgColor={"#fff"}
+                          backgroundSize="cover"
+                          w="40%"
+                          h="760px"
+                        ></Flex>
+                      </Flex>
+                    </ModalContent>
+                  </Modal>
                 </>
               );
             })}
-
-            <Modal isOpen={isOpen} onClose={onClose} size="xl">
-              <ModalContent maxW="1280px">
-                <Flex>
-                  <ModalCloseButton />
-                  <Flex
-                    w="50%"
-                    h="650px"
-                    flexDir="column"
-                    padding={"52px 84px"}
-                  >
-                    <Text>Novo sistema de gamificação do 4.community:</Text>
-                  </Flex>
-
-                  <Flex
-                    background={`url(https://i.imgur.com/WqQNVlq.png)`}
-                    bgColor={"#fff"}
-                    backgroundSize="cover"
-                    w="50%"
-                    h="650px"
-                  >
-                    aqui
-                  </Flex>
-                </Flex>
-              </ModalContent>
-            </Modal>
           </Flex>
         </Flex>
       </Flex>
