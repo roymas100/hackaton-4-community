@@ -15,6 +15,7 @@ import { useEffect, useState } from "react";
 import TipsCard from "@/components/TipsCards/TipsCards";
 import Link from "next/link";
 import { User } from "react-feather";
+import { useRouter } from "next/router";
 
 export default function Home() {
   const { communitiesList, newsList } = useDb();
@@ -44,8 +45,8 @@ export default function Home() {
           flexDirection="column"
           w="calc(100% - 120px)"
           alignItems="center"
-          css = {{
-            filter: `${isOpen?  "blur(40px)" : "blur(0);"}`
+          css={{
+            filter: `${isOpen ? "blur(40px)" : "blur(0);"}`,
           }}
         >
           <HomeHeader />
